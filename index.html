@@ -1,0 +1,67 @@
+d>
+        <meta charset="utf-8">
+        <title> A01274260 </title>
+        <script src="https://unpkg.com/vue@3"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    </head>
+
+    <style>  .btn-space { margin-right: 20px; }  </style>
+
+    <body style="text-align: center;" >
+
+        <div class="sticky-top">
+            <nav class="navbar navbar-light bg-light" >
+                <ul class="nav nav-pills">
+                    <li class="nav-item">  <a class="nav-link" href="#fat"> DOM Reference </a>  </li>
+                    <li class="nav-item">  <a class="nav-link" href="#mdo">  Methods  </a>  </li>
+                    <li class="nav-item">  <a class="nav-link" href="#mdo"> Computed Variables </a> </li>
+                  </ul>
+            </nav> 
+        </div>
+
+        <div class="container-fluid" id="app"> <br>
+            <h4>Uso de referencia DOM</h4>
+            <p2 ref="dateref"></p2>
+        </div>
+
+        <script>
+            Vue.createApp({
+                mounted(){
+                    var todayDate = new Date();
+                    this.$refs.dateref.textContent = 'Fecha y hora :    ' + todayDate;
+                }
+            }).mount('#app')
+        </script>
+
+        <div class="container-fluid" id="cnt"> <br>
+            <h3> Contador Negativo y/o Positivo  </h3>
+            <button type="button" class="btn btn-outline-danger .btn-space" @click="decrement">  -  </button>
+            <button type="button" class="btn btn-outline-success" @click="increment">  +  </button>
+            <h1>{{ cnt }}</h1>
+            <p>{{mensaje_bienvenida}}</p>
+        </div>
+
+        <script>
+            Vue.createApp({
+                data() {
+                    return { cnt : 0 }
+                },
+
+                methods: {
+                    increment() { this.cnt++; },
+                    decrement() { this.cnt--; }
+                },
+                
+                computed: {
+                    mensaje_bienvenida: function(){
+                        return this.cnt >= 10 || this.cnt <= -10 ? 'Ya deja de picarle' : '¿ Incremento o decremento ?'
+                    }
+                }
+            }).mount('#cnt')
+        </script>
+
+    </body>
+</html>
